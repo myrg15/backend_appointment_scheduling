@@ -1,0 +1,14 @@
+{
+  "name": "backend_appointment_scheduling",
+  "version": "1.0.0",
+  "description": "express basic ts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mr",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
