@@ -12,8 +12,4 @@ export const AppDataSource = new DataSource({
     //migrations: 
     synchronize: true,
     logging: false,
-
-
-
-
 })
