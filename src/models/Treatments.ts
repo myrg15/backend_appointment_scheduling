@@ -3,7 +3,7 @@ import { Reviews } from "../models/Reviews";
 import {AppointmentTreatment} from "../models/AppointmentTreatment";
 
 @Entity("treatments")
-export class Treatments {
+export class Treatments extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id!: number;

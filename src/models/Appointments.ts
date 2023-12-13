@@ -12,15 +12,15 @@ import { Users } from "../models/Users";
 import { AppointmentTreatment } from "./AppointmentTreatment";
 
 @Entity("appointments")
-export class Appointments {
+export class Appointments extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
   @Column()
-  users!: number;
+  user_Id!: number;
 
   @Column()
-  appointment_treatment!: number;
+  appointmentTreatment_Id!: number;
 
   @Column()
   status!: string;
@@ -38,11 +38,11 @@ export class Appointments {
   updatedDate!: Date;
 
   @ManyToOne(() => Users, (users) => users.appointments)
-  @JoinColumn({ name: "users" })
+  @JoinColumn({ name: "user_Id" })
   user!: Users;
 
   @ManyToOne(() => AppointmentTreatment, (appointment_treatment) => appointment_treatment.appointments)
-  @JoinColumn({ name: "appointment_treatment" })
+  @JoinColumn({ name: "appointmentTreatment_Id" })
   appointment_treatments!: AppointmentTreatment;
 
 }

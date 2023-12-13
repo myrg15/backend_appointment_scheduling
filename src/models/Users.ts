@@ -1,10 +1,8 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn, OneToMany  } from "typeorm"
 import { Reviews } from "../models/Reviews";
 import { Appointments } from "../models/Appointments";
-
-
 @Entity("users")
-export class Users {
+export class Users extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id!: number;
@@ -39,9 +37,9 @@ export class Users {
     @UpdateDateColumn()
     updatedDate!: Date;
   
-    @OneToMany(() => Appointments, (appointments) => appointments.users)
+    @OneToMany(() => Appointments, (appointments) => appointments.user)
     appointments!: Appointments[];
     
-    @OneToMany(() => Reviews, (reviews) => reviews.users)
+    @OneToMany(() => Reviews, (reviews) => reviews.user)
     reviews!: Reviews[];
 }
