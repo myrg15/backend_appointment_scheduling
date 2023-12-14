@@ -13,10 +13,10 @@ export class Treatments1702556954028 implements MigrationInterface {
             isGenerated: true,
             generationStrategy: "increment",
           },
-          /*{
+          {
             name: "review_Id",
             type: "int",
-          },*/
+          },
           {
             name: "appointment_Id",
             type: "int",

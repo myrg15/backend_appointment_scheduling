@@ -33,7 +33,7 @@ export class Reviews extends BaseEntity{
     user!: Users;
  
     @ManyToOne(() => Treatments, (treatments) => treatments.reviews)
-    @JoinColumn ({name: "treatments"})
+    @JoinColumn ({name: "treatment"})
     treatment!: Treatments;
  
 }

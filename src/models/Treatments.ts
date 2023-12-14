@@ -2,11 +2,14 @@ import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColu
 import { Reviews } from "../models/Reviews";
 import { Appointments } from "./Appointments";
 
-@Entity("treatments")
+@Entity("treatment")
 export class Treatments extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id!: number;
+
+    @Column()
+    reviews_Id!: number;
    
     @Column()
     name_treatment!: string;
@@ -41,7 +44,7 @@ export class Treatments extends BaseEntity {
 
     @ManyToMany(()  => Appointments )
     @JoinTable({
-      name: "appointment_Treatments"
+      name: "appointment_treatment"
       })
       appointment!: Appointments [];
 }
