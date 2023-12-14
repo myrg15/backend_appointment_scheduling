@@ -9,6 +9,7 @@ import { Treatments } from "./models/Treatments";
 import { AppointmentTreatment } from "./models/AppointmentTreatment";
 import { Reviews } from "./models/Reviews";
 
+
 export const AppDataSource = new DataSource({
     type: "mysql",
     host: "localhost",
