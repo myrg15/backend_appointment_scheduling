@@ -23,6 +23,12 @@ export class Treatments extends BaseEntity {
     @Column()
     status!: string;
 
+    @Column()
+    date!: Date
+    
+    @Column()
+    time!: string
+
     @CreateDateColumn()
     createdDate!: Date;
   
