@@ -11,7 +11,6 @@ import {
   JoinTable,
 } from "typeorm";
 import { Users } from "../models/Users";
-import { AppointmentTreatment } from "./AppointmentTreatment";
 import { Treatments } from "./Treatments";
 
 @Entity("appointments")
@@ -42,17 +41,8 @@ export class Appointments extends BaseEntity {
   user!: Users;
 
   @ManyToMany(() => Treatments)
-  @JoinTable({name:"treatments", 
-  joinColumn:{
-    name: "id",
-    referencedColumnName: "id"
-  },
-  inverseJoinColumn: {
-    name: "id",
-    referencedColumnName: "id"
+  @JoinTable({
+    name: "appointment_Treatments"
+    })
+    treatments!: Treatments [];
   }
-
-})
-  treatments!: Treatments [];
-
-}

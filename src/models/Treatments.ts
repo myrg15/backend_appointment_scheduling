@@ -38,6 +38,10 @@ export class Treatments extends BaseEntity {
     @OneToMany(() => Reviews, (reviews) => reviews.treatment)
     reviews!: Reviews[];
   
-    @ManyToMany(() => Appointments, (appointments) => appointments.treatments) 
-    appointments!:Appointments[];
+
+    @ManyToMany(()  => Appointments )
+    @JoinTable({
+      name: "appointment_Treatments"
+      })
+      appointment!: Appointments [];
 }
