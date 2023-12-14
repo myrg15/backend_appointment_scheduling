@@ -62,19 +62,19 @@ export class Treatments1702556954028 implements MigrationInterface {
             default: "CURRENT_TIMESTAMP",
           },
           {
-            name: "update_at",
+            name: "updated_at",
             type: "timestamp",
             default: "CURRENT_TIMESTAMP",
             onUpdate: "CURRENT_TIMESTAMP",
           },
         ],
         foreignKeys: [
-          /*{
+          {
             columnNames: ["review_Id"],
             referencedTableName: "reviwes",
             referencedColumnNames: ["id"],
             onDelete: "CASCADE",
-          },*/
+          },
           {
             columnNames: ["appointment_Id"],
             referencedTableName: "appointments",

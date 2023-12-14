@@ -42,7 +42,7 @@ export class Reviews1702561884652 implements MigrationInterface {
             default: "CURRENT_TIMESTAMP",
           },
           {
-            name: "update_at",
+            name: "updated_at",
             type: "timestamp",
             default: "CURRENT_TIMESTAMP",
             onUpdate: "CURRENT_TIMESTAMP",

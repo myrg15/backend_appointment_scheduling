@@ -63,7 +63,7 @@ export class Users1702504578819 implements MigrationInterface {
             default: "CURRENT_TIMESTAMP",
           },
           {
-            name: "update_at",
+            name: "updated_at",
             type: "timestamp",
             default: "CURRENT_TIMESTAMP",
             onUpdate: "CURRENT_TIMESTAMP",

@@ -22,11 +22,11 @@ export class Reviews extends BaseEntity{
     @Column()
     status!: string;
     
-    @CreateDateColumn()
-    createdDate!: Date;
+    @Column()
+    created_at!: Date;
   
-    @UpdateDateColumn()
-    updatedDate!: Date;
+    @Column()
+    updated_at!: Date;
   
     @ManyToOne(() => Users, (users) => users.reviews)
     @JoinColumn ({name: "users"})

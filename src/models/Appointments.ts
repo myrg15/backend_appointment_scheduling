@@ -30,11 +30,11 @@ export class Appointments extends BaseEntity {
   @Column()
   time!: string;
 
-  @CreateDateColumn()
-  createdDate!: Date;
+  @Column()
+  created_at!: Date;
 
-  @UpdateDateColumn()
-  updatedDate!: Date;
+  @Column()
+  updated_at!: Date;
 
   @ManyToOne(() => Users, (users) => users.appointments)
   @JoinColumn({ name: "user_Id" })
