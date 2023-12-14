@@ -7,9 +7,12 @@ import {
   JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToMany,
+  JoinTable,
 } from "typeorm";
 import { Users } from "../models/Users";
 import { AppointmentTreatment } from "./AppointmentTreatment";
+import { Treatments } from "./Treatments";
 
 @Entity("appointments")
 export class Appointments extends BaseEntity {
@@ -18,9 +21,6 @@ export class Appointments extends BaseEntity {
 
   @Column()
   user_Id!: number;
-
-  @Column()
-  appointmentTreatment_Id!: number;
 
   @Column()
   status!: string;
@@ -41,8 +41,18 @@ export class Appointments extends BaseEntity {
   @JoinColumn({ name: "user_Id" })
   user!: Users;
 
-  @ManyToOne(() => AppointmentTreatment, (appointment_treatment) => appointment_treatment.appointments)
-  @JoinColumn({ name: "appointmentTreatment_Id" })
-  appointment_treatments!: AppointmentTreatment;
+  @ManyToMany(() => Treatments)
+  @JoinTable({name:"treatments", 
+  joinColumn:{
+    name: "id",
+    referencedColumnName: "id"
+  },
+  inverseJoinColumn: {
+    name: "id",
+    referencedColumnName: "id"
+  }
+
+})
+  treatments!: Treatments [];
 
 }
