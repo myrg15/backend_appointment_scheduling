@@ -1,6 +1,6 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable, OneToMany } from "typeorm"
 import { Reviews } from "../models/Reviews";
-import {AppointmentTreatment} from "../models/AppointmentTreatment";
+import { Appointments } from "./Appointments";
 
 @Entity("treatments")
 export class Treatments extends BaseEntity {
@@ -32,18 +32,6 @@ export class Treatments extends BaseEntity {
     @OneToMany(() => Reviews, (reviews) => reviews.treatments)
     reviews!: Reviews[];
   
-    @ManyToMany(() => AppointmentTreatment)
-    @JoinTable({
-        name: "appointment_treatment",
-        joinColumn: {
-        name: "id",
-        referencedColumnName: "id"
-        },
-        inverseJoinColumn: {
-            name: "id",
-            referencedColumnName: "id"
-        }
-    })
-    appointment_treatment!: AppointmentTreatment[];
-
+    @ManyToOne(() => Appointments, (appointments) => appointments.treatments) 
+    appointments!:Appointments[];
 }
