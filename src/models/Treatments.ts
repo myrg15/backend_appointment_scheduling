@@ -35,7 +35,7 @@ export class Treatments extends BaseEntity {
     @UpdateDateColumn()
     updatedDate!: Date;
 
-    @OneToMany(() => Reviews, (reviews) => reviews.treatments)
+    @OneToMany(() => Reviews, (reviews) => reviews.treatment)
     reviews!: Reviews[];
   
     @ManyToMany(() => Appointments, (appointments) => appointments.treatments) 

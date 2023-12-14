@@ -8,10 +8,10 @@ export class Reviews extends BaseEntity{
     id!: number;
 
     @Column()
-    users!: number;
+    userId!: number;
 
     @Column()
-    treatments!: number;
+    treatment_Id!: number;
     
     @Column()
     punctuation!: string;
