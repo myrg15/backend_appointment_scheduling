@@ -14,12 +14,12 @@ export class AppointmentTreatment extends BaseEntity{
     @Column()
     treatments!: number;
 
-    @ManyToOne(() => Appointments, (appointments) => appointments.appointment_treatments)
-    @JoinColumn ({name: "id"})
+    @ManyToOne(() => Appointments, (appointments) => appointments.id)
+    @JoinColumn ({name: "appointments_Id"})
     appointment!: Appointments;
   
-    @ManyToOne(() => Treatments, (treatments) => treatments.appointment_treatment)
-    @JoinColumn({name: "id"})
+    @ManyToOne(() => Treatments, (treatments) => treatments.id)
+    @JoinColumn({name: "treatments_Id"})
     treatment!: Treatments;
 
 }

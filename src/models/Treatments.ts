@@ -32,6 +32,6 @@ export class Treatments extends BaseEntity {
     @OneToMany(() => Reviews, (reviews) => reviews.treatments)
     reviews!: Reviews[];
   
-    @ManyToOne(() => Appointments, (appointments) => appointments.treatments) 
+    @ManyToMany(() => Appointments, (appointments) => appointments.treatments) 
     appointments!:Appointments[];
 }
