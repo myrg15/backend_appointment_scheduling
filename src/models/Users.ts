@@ -31,11 +31,11 @@ export class Users extends BaseEntity {
     @Column()
     status!: string;
 
-    @CreateDateColumn()
-    createdDate!: Date;
+    @Column()
+    created_at!: Date;
   
-    @UpdateDateColumn()
-    updatedDate!: Date;
+    @Column()
+    updated_at!: Date;
   
     @OneToMany(() => Appointments, (appointments) => appointments.user)
     appointments!: Appointments[];

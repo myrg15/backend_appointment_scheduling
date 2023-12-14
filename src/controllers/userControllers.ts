@@ -14,8 +14,6 @@ import { AppDataSource } from "../database";
 const userRepository = AppDataSource.getRepository(Users)
 const appointmentRepository = AppDataSource.getRepository(Appointments);
 const treatmentsRepository = AppDataSource.getRepository(Treatments);
-//const appointmentTreatmentRepository =
-  //AppDataSource.getRepository(AppointmentTreatment);
 const reviewsRepository = AppDataSource.getRepository(Reviews);
 
 const register = async (req: Request, res: Response) => {

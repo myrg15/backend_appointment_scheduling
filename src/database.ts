@@ -14,7 +14,6 @@ import { Reviews } from "./models/Reviews";
 import { Users } from "./models/Users";
 
 
-
 export const AppDataSource = new DataSource({
     type: "mysql",
     host: "localhost",
@@ -24,6 +23,6 @@ export const AppDataSource = new DataSource({
     database:"appointment_scheduling", 
     entities:[Users, Appointments, Treatments, Reviews], 
     migrations:[Users1702504578819, Appointments1702554406450, Treatments1702556954028, AppointmentsTreatments1702560663219, Reviews1702561884652], 
-    synchronize: true,
+    synchronize: false,
     logging: false,
 })

@@ -21,8 +21,5 @@ AppDataSource.initialize()
     console.log(error)
   })
 
-app.listen (PORT, () => {
-    console.log(`server is listening on port ${PORT}`)
-})
 
 
