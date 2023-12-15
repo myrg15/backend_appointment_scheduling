@@ -28,12 +28,12 @@ export class Reviews extends BaseEntity {
     @Column()
     updated_at!: Date;
   
-    @ManyToOne(() => Users, (user) => user)//revisar no me trae el .review
+
+    @ManyToOne(() => Treatments, treatment => treatment.reviews)
+    treatments! : Treatments
+    
+    @ManyToOne(() => Users, (user) => user.reviews)//revisar no me trae el .review
     user!: Users;
  
-    @ManyToMany(() => Treatments)
-    @JoinTable({
-        name: "review",
-      })
-    treatment!: Treatments[];
+    
 }

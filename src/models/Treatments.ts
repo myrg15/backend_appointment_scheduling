@@ -7,8 +7,11 @@ import {
   UpdateDateColumn,
   ManyToMany,
   JoinTable,
+  OneToMany,
+  ManyToOne,
 } from "typeorm";
 import { Appointments } from "../models/Appointments";
+import { Reviews } from "./Reviews";
 
 @Entity("treatment")
 export class Treatments extends BaseEntity {
@@ -44,6 +47,10 @@ export class Treatments extends BaseEntity {
 
   @UpdateDateColumn()
   updatedDate!: Date;
+
+  
+  @OneToMany(() => Reviews, review => review.treatments)
+  reviews! : Reviews[]
 
   @ManyToMany(() => Appointments)
   @JoinTable({

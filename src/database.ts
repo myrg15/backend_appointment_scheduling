@@ -9,16 +9,20 @@ import { Appointments } from "./models/Appointments";
 import { Treatments } from "./models/Treatments";
 import { Reviews } from "./models/Reviews";
 
-
 export const AppDataSource = new DataSource({
-    type: "mysql",
-    host: "localhost",
-    port: 3306,
-    username: "root",
-    password: "123456789",
-    database:"appointment_scheduling", 
-    entities:[Users, Appointments, Treatments, Reviews], 
-    migrations:[Users1702653336802, Appointments1702654139564, Treatments1702656982301, Reviews1702657687855], 
-    synchronize: false,
-    logging: false,
-})
+  type: "mysql",
+  host: "localhost",
+  port: 3306,
+  username: "root",
+  password: "123456789",
+  database: "appointment_scheduling",
+  entities: [Users, Appointments, Treatments, Reviews],
+  migrations: [
+    Users1702653336802,
+    Appointments1702654139564,
+    Treatments1702656982301,
+    Reviews1702657687855,
+  ],
+  synchronize: false,
+  logging: false,
+});

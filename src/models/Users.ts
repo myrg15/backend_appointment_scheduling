@@ -1,4 +1,11 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { Reviews } from "./Reviews";
 
 @Entity("user")
 export class Users extends BaseEntity {
@@ -23,10 +30,10 @@ export class Users extends BaseEntity {
   @Column()
   address!: string;
 
-  @Column()
+  @Column({ default: "user" })
   role!: string;
 
-  @Column()
+  @Column({ default: "active" })
   status!: string;
 
   @Column()
@@ -34,4 +41,7 @@ export class Users extends BaseEntity {
 
   @Column()
   updated_at!: Date;
+
+  @OneToMany(() => Reviews, (review) => review.user)
+  reviews!: Reviews[];
 }

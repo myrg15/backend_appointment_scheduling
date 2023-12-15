@@ -9,9 +9,8 @@ import { Treatments } from "../models/Treatments";
 import { Reviews } from "../models/Reviews";
 import { AppDataSource } from "../database";
 
-
 //metódo getRepository de AppDataSource permite realizar operaciones CRUD
-const userRepository = AppDataSource.getRepository(Users)
+const userRepository = AppDataSource.getRepository(Users);
 const appointmentRepository = AppDataSource.getRepository(Appointments);
 const treatmentsRepository = AppDataSource.getRepository(Treatments);
 const reviewsRepository = AppDataSource.getRepository(Reviews);
@@ -27,8 +26,10 @@ const register = async (req: Request, res: Response) => {
     role,
     status,
   } = req.body;
-  try {
 
+  console.log(req.body);
+
+  try {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     if (!emailRegex.test(email)) {
       return res.json({ mensaje: "email invalid" });
@@ -46,27 +47,25 @@ const register = async (req: Request, res: Response) => {
 
     const user = await Users.save(new_users);
 
-    console.log(new_users)
-
-    res.status(200).json({})
-    /*
-   
-    
-    
-
-    if (!role || role == "user") {
-      return res.status(200).json({ message: "user create success" });
-    }
-
-    res.status(200).json({ message: "successfully registered user", user });*/
+    res.status(200).json({ status: "success", message: "User create success" });
   } catch (error) {
     console.error("Error registered user:", error);
     res.status(500).json({ message: "internal server error" });
   }
 };
 
-const login = (req: Request, res: Response) => {
-  res.status(200).json({});
+const login = async (req: Request, res: Response) => {
+  const { email, password } = req.body;
+
+  const user = await Users.findOne({ where: { email } });
+
+  if (!user || !(await bycrypt.compare(password, user.password))) {
+    return res.status(403).json({ message: "credentials invalids" });
+  }
+
+  user.password = "";
+
+  res.status(200).json({ status: "success", user });
 };
 
 const profile = (req: Request, res: Response) => {
