@@ -6,6 +6,7 @@ import { Treatments1702656982301 } from "./migration/1702656982301-Treatments";
 import { Reviews1702657687855 } from "./migration/1702657687855-Reviews";
 import { Users } from "./models/Users";
 import { Appointments } from "./models/Appointments";
+import { Treatments } from "./models/Treatments";
 
 
 export const AppDataSource = new DataSource({
@@ -15,7 +16,7 @@ export const AppDataSource = new DataSource({
     username: "root",
     password: "123456789",
     database:"appointment_scheduling", 
-    entities:[Users, Appointments], 
+    entities:[Users, Appointments, Treatments], 
     migrations:[Users1702653336802, Appointments1702654139564, Treatments1702656982301, Reviews1702657687855], 
     synchronize: false,
     logging: false,
