@@ -29,7 +29,7 @@ const register = async (req: Request, res: Response) => {
   try {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     if (!emailRegex.test(email)) {
-      return res.json({ mensaje: "email invalid" });
+      return res.json({ message: "email invalid" });
     }
 
     const new_users = new Users();
@@ -39,8 +39,14 @@ const register = async (req: Request, res: Response) => {
     new_users.address = address;
     new_users.email = email;
     new_users.password = bycrypt.hashSync(password, 10);
-    new_users.role = role;
-    new_users.status = status;
+    if (role === "user") {
+      new_users.role = "user";
+      new_users.status = status;
+    } else if (role === "admin") {
+      new_users.role = "admin";
+    } else {
+      return res.json({ message: "invalid role" });
+    }
 
     const user = await Users.save(new_users);
 
