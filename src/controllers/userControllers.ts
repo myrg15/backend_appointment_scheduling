@@ -1,15 +1,12 @@
 import { Request, Response } from "express";
 import bycrypt from "bcrypt";
 
-//models
-
 import { Users } from "../models/Users";
 import { Appointments } from "../models/Appointments";
 import { Treatments } from "../models/Treatments";
 import { Reviews } from "../models/Reviews";
 import { AppDataSource } from "../database";
 
-//metódo getRepository de AppDataSource permite realizar operaciones CRUD
 const userRepository = AppDataSource.getRepository(Users);
 const appointmentRepository = AppDataSource.getRepository(Appointments);
 const treatmentsRepository = AppDataSource.getRepository(Treatments);

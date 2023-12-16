@@ -1,7 +1,7 @@
 export {};
 
 export interface TokenDecoded {
-  user: string;
+  user: number;
   email: string;
   role: string;
 }
