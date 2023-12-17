@@ -1,13 +1,13 @@
-import express from 'express'
+import express from "express";
+import { auth } from "../middlewares/auth";
 
 // Controllers
-import { login, register, profile } from '../controllers/userControllers'
+import { login, register, profile } from "../controllers/userControllers";
 
-const route = express.Router()
+const route = express.Router();
 
-route.post('/login', login )
-route.post('/register', register)
-route.get('/profile', profile)
+route.post("/login", auth, login);
+route.post("/register", register);
+route.get("/profile", profile);
 
-
-export { route as userRoutes }
+export { route as userRoutes };

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import bycrypt from "bcrypt";
-
+import jwt from "jsonwebtoken";
 import { Users } from "../models/Users";
 import { Appointments } from "../models/Appointments";
 import { Treatments } from "../models/Treatments";
@@ -59,17 +59,42 @@ const register = async (req: Request, res: Response) => {
 
 const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
+  try {
+    const user = await Users.findOne({ where: { email } });
+    if (!user || !(await bycrypt.compare(password, user.password))) {
+      return res.status(403).json({ message: "credentials invalids" });
+    }
 
-  const user = await Users.findOne({ where: { email } });
+    user.password = "";
 
-  if (!user || !(await bycrypt.compare(password, user.password))) {
-    return res.status(403).json({ message: "credentials invalids" });
+    const token = jwt.sign(
+      {
+        user: user.id,
+        role: user.role,
+        email: user.email,
+      },
+      process.env.JWT_SECRET as string,
+      {
+        expiresIn: "7d",
+      }
+    );
+    console.log("generated token:", token);
+    return res.json({
+      success: true,
+      message: "user logged succesfully",
+      token: token,
+      name: user.name,
+      role: user.role,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "user authentication error",
+    });
   }
-
-  user.password = "";
-
-  res.status(200).json({ status: "success", user });
 };
+// res.status(200).json({ status: "success", user });
+//};
 
 const profile = (req: Request, res: Response) => {
   res.status(200).json({});
