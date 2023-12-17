@@ -72,13 +72,15 @@ const login = async (req: Request, res: Response) => {
         name: user.id,
         role: user.role,
         email: user.email,
+        //password: user.password,
       },
       process.env.JWT_SECRET as string,
       {
         expiresIn: "7d",
+        //algorithm: "HS256",
       }
     );
-    console.log("generated token:", token);
+    //console.log("JWT Secret:", process.env.JWT_SECRET);
     return res.json({
       success: true,
       message: "user logged succesfully",
@@ -93,8 +95,6 @@ const login = async (req: Request, res: Response) => {
     });
   }
 };
-// res.status(200).json({ status: "success", user });
-//};
 
 const profile = (req: Request, res: Response) => {
   res.status(200).json({});
