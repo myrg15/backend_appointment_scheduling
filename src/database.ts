@@ -9,12 +9,13 @@ import { Users } from "./models/Users";
 import { Appointments } from "./models/Appointments";
 import { Treatments } from "./models/Treatments";
 import { Reviews } from "./models/Reviews";
+//require("dotenv").config();
 
 export const AppDataSource = new DataSource({
   type: "mysql",
   host: process.env.DB_HOST,
   port: 3306,
-  username: process.env.DB_USER,
+  username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
   entities: [Users, Appointments, Treatments, Reviews],

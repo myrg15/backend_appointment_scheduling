@@ -18,7 +18,7 @@ const auth = (req: Request, res: Response, next: NextFunction) => {
       token,
       process.env.JWT_SECRET as string
     ) as TokenDecoded;
-    console.log("JWT Secret:", process.env.JWT_SECRET);
+    //console.log("JWT Secret:", process.env.JWT_SECRET);
     req.token = tokenDecoded;
     next();
   } catch (error) {
