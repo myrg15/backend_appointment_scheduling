@@ -1,25 +1,28 @@
-import express from 'express';
-import cors from 'cors';
+import cors from "cors";
+import express from "express";
 
-import { userRoutes } from './routes/userRoutes';
-import { AppDataSource } from './database';
+// Routes
+import { AppDataSource } from "./database";
+import { userRoutes } from "./routes/userRoutes";
+import { treatmentRoutes } from "./routes/treatmentRoutes";
 
 const app = express();
-const PORT = 4001
 
-app.use(cors())
-app.use(express.json())
+const PORT = 4001;
 
-app.use("/users", userRoutes)
+app.use(cors());
+app.use(express.json());
+
+app.use("/users", userRoutes);
+app.use("/treatments", treatmentRoutes);
 
 AppDataSource.initialize()
   .then(() => {
-    console.log('Database connected');
-    app.listen(PORT, () => {console.log(`Server running ${PORT}`);})
+    console.log("Database connected");
+    app.listen(PORT, () => {
+      console.log(`Server running ${PORT}`);
+    });
   })
-  .catch(error => {
-    console.log(error)
-  })
-
-
-
+  .catch((error) => {
+    console.log(error);
+  });
