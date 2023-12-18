@@ -6,6 +6,8 @@ import { Users } from "./models/Users";
 import { Appointments } from "./models/Appointments";
 import { Treatments } from "./models/Treatments";
 import { Reviews } from "./models/Reviews";
+import { Users1702930737798 } from "./migration/1702930737798-Users";
+import { Appointments1702931883584 } from "./migration/1702931883584-Appointments";
 dotenv.config({});
 
 export const AppDataSource = new DataSource({
@@ -16,7 +18,7 @@ export const AppDataSource = new DataSource({
   password: process.env.DB_PASSWORD,
   database: "appointment_scheduling",
   entities: [Users, Appointments, Treatments, Reviews],
-  migrations: [],
+  migrations: [Users1702930737798, Appointments1702931883584],
   synchronize: false,
   logging: false,
 });
