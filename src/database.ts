@@ -16,11 +16,11 @@ dotenv.config({});
 
 export const AppDataSource = new DataSource({
   type: "mysql",
-  host: "localhost",
+  host: process.env.DB_HOST,
   port: 3306,
-  username: "root",
+  username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
-  database: "appointment_scheduling",
+  database: process.env.DB_DATABASE,
   entities: [Users, Appointments, Treatments, Reviews],
   migrations: [
     Users1702930737798,
