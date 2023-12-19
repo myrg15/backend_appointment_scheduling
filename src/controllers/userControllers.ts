@@ -1,16 +1,18 @@
-import { Request, Response } from "express";
 import bycrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { Request, Response } from "express";
+//Models
 import { Users } from "../models/Users";
-import { Appointments } from "../models/Appointments";
-import { Treatments } from "../models/Treatments";
 import { Reviews } from "../models/Reviews";
+import { Treatments } from "../models/Treatments";
+import { Appointments } from "../models/Appointments";
+//Database
 import { AppDataSource } from "../database";
 
 const userRepository = AppDataSource.getRepository(Users);
-const appointmentRepository = AppDataSource.getRepository(Appointments);
-const treatmentsRepository = AppDataSource.getRepository(Treatments);
 const reviewsRepository = AppDataSource.getRepository(Reviews);
+const treatmentsRepository = AppDataSource.getRepository(Treatments);
+const appointmentRepository = AppDataSource.getRepository(Appointments);
 
 const register = async (req: Request, res: Response) => {
   const {
@@ -72,15 +74,12 @@ const login = async (req: Request, res: Response) => {
         name: user.id,
         role: user.role,
         email: user.email,
-        //password: user.password,
       },
       process.env.JWT_SECRET as string,
       {
         expiresIn: "7d",
-        //algorithm: "HS256",
       }
     );
-    //console.log("JWT Secret:", process.env.JWT_SECRET);
     return res.json({
       success: true,
       message: "user logged succesfully",
@@ -96,8 +95,30 @@ const login = async (req: Request, res: Response) => {
   }
 };
 
-const profile = (req: Request, res: Response) => {
-  res.status(200).json({});
+const profile = async (req: Request, res: Response) => {
+  const { email } = req.token;
+  try {
+    const user = await userRepository.findOne({ where: { email } });
+
+    if (user) {
+      return res.json({
+        success: true,
+        message: "profile users retrieved",
+        data: user,
+      });
+    } else {
+      return res.status(404).json({
+        success: false,
+        message: "profile users not found",
+      });
+    }
+  } catch (error) {
+    console.error("Error get profile:", error);
+    return res.status(500).json({
+      success: false,
+      message: "users not get profile",
+    });
+  }
 };
 
 export { login, register, profile };
