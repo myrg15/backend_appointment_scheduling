@@ -19,6 +19,9 @@ export class Treatments extends BaseEntity {
   id!: number;
 
   @Column()
+  review_Id!: number;
+
+  @Column()
   appointment_Id!: number;
 
   @Column()
@@ -42,15 +45,14 @@ export class Treatments extends BaseEntity {
   @Column()
   time!: string;
 
-  @CreateDateColumn()
-  createdDate!: Date;
+  @Column()
+  created_at!: Date;
 
-  @UpdateDateColumn()
-  updatedDate!: Date;
+  @Column()
+  updated_at!: Date;
 
-  
-  @OneToMany(() => Reviews, review => review.treatments)
-  reviews! : Reviews[]
+  @OneToMany(() => Reviews, (review) => review.treatments)
+  reviews!: Reviews[];
 
   @ManyToMany(() => Appointments)
   @JoinTable({

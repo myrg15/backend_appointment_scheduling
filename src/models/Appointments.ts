@@ -1,18 +1,20 @@
-import { BaseEntity,
-    Column,
-    Entity,
-    PrimaryGeneratedColumn,
-    JoinColumn,
-    CreateDateColumn,
-    UpdateDateColumn,
-    ManyToMany,
-    JoinTable, } from "typeorm"
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  JoinColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ManyToMany,
+  JoinTable,
+} from "typeorm";
 
 import { Users } from "../models/Users";
 
 @Entity("appointment")
 export class Appointments extends BaseEntity {
-    @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn()
   id!: number;
 
   @Column()
@@ -35,7 +37,7 @@ export class Appointments extends BaseEntity {
 
   @ManyToMany(() => Users)
   @JoinTable({
-    name: "appointment"
-    })
-    user!: Users[];
+    name: "appointment",
+  })
+  user!: Users[];
 }

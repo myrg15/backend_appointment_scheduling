@@ -6,7 +6,6 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Reviews } from "./Reviews";
-
 @Entity("user")
 export class Users extends BaseEntity {
   @PrimaryGeneratedColumn()
