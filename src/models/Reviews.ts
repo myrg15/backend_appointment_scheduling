@@ -6,6 +6,7 @@ import {
   ManyToOne,
   JoinTable,
   ManyToMany,
+  JoinColumn,
 } from "typeorm";
 import { Users } from "../models/Users";
 import { Treatments } from "../models/Treatments";
@@ -36,9 +37,10 @@ export class Reviews extends BaseEntity {
   @Column()
   updated_at!: Date;
 
-  @ManyToOne(() => Users, (user) => user.reviews) //revisar no me trae el .review
-  user!: Users;
+  /*@ManyToOne(() => Users, (user) => user.reviews) //revisar no me trae el .review
+  user!: Users;*/
 
-  @ManyToOne(() => Treatments, (treatment) => treatment.reviews)
-  treatments!: Treatments;
+  /*@ManyToOne(() => Treatments, (treatment) => treatment.reviews)
+  @JoinColumn({ name: "treatment_Id" }) // Esto conecta la columna 'treatment_Id' con la relación
+  treatment!: Treatments;*/
 }

@@ -18,11 +18,11 @@ export class Treatments extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column()
-  review_Id!: number;
+  /*@Column()
+  review_Id!: number;*/
 
-  @Column()
-  appointment_Id!: number;
+  /* @Column()
+  appointment_Id!: number;*/
 
   @Column()
   name_treatment!: string;
@@ -36,27 +36,21 @@ export class Treatments extends BaseEntity {
   @Column()
   img_url!: string;
 
-  @Column()
+  @Column({ default: "active" })
   status!: string;
 
-  @Column()
-  date!: Date;
-
-  @Column()
-  time!: string;
-
-  @Column()
+  @CreateDateColumn()
   created_at!: Date;
 
-  @Column()
+  @UpdateDateColumn()
   updated_at!: Date;
 
-  @OneToMany(() => Reviews, (review) => review.treatments)
+  /*@OneToMany(() => Reviews, (review) => review.treatment)
   reviews!: Reviews[];
 
   @ManyToMany(() => Appointments)
   @JoinTable({
     name: "treatment",
   })
-  appointment!: Appointments[];
+  appointment!: Appointments[];*/
 }

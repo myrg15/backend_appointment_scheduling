@@ -1,9 +1,11 @@
 import {
   BaseEntity,
   Column,
+  CreateDateColumn,
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
 import { Reviews } from "./Reviews";
 @Entity("user")
@@ -35,12 +37,12 @@ export class Users extends BaseEntity {
   @Column({ default: "active" })
   status!: string;
 
-  @Column()
+  @CreateDateColumn()
   created_at!: Date;
 
-  @Column()
+  @UpdateDateColumn()
   updated_at!: Date;
 
-  @OneToMany(() => Reviews, (review) => review.user)
-  reviews!: Reviews[];
+  /*@OneToMany(() => Reviews, (review) => review.user)
+  reviews!: Reviews[];*/
 }

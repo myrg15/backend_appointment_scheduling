@@ -97,7 +97,6 @@ const login = async (req: Request, res: Response) => {
 
 const profile = async (req: Request, res: Response) => {
   const { email } = req.token;
-  console.log("email");
   try {
     const user = await userRepository.findOne({ where: { email } });
 
@@ -107,7 +106,7 @@ const profile = async (req: Request, res: Response) => {
         message: "profile users retrieved",
         data: user,
       });
-      // console.log(user);
+      console.log(user);
     } else {
       return res.status(404).json({
         success: false,

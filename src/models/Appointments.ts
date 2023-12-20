@@ -32,15 +32,9 @@ export class Appointments extends BaseEntity {
   @Column()
   time!: string;
 
-  @Column()
+  @CreateDateColumn()
   created_at!: Date;
 
-  @Column()
+  @UpdateDateColumn()
   updated_at!: Date;
-
-  @ManyToMany(() => Users)
-  @JoinTable({
-    name: "appointment",
-  })
-  user!: Users[];
 }

@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class Treatments1703008725670 implements MigrationInterface {
+export class Treatments1703011213211 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -13,10 +13,10 @@ export class Treatments1703008725670 implements MigrationInterface {
             isGenerated: true,
             generationStrategy: "increment",
           },
-          /*{
+          {
             name: "review_Id",
             type: "int",
-          },*/
+          },
           {
             name: "appointment_Id",
             type: "int",
@@ -69,12 +69,12 @@ export class Treatments1703008725670 implements MigrationInterface {
           },
         ],
         foreignKeys: [
-          /*{
+          {
             columnNames: ["review_Id"],
             referencedTableName: "review",
             referencedColumnNames: ["id"],
             onDelete: "CASCADE",
-          },*/
+          },
 
           {
             columnNames: ["appointment_Id"],
@@ -87,6 +87,7 @@ export class Treatments1703008725670 implements MigrationInterface {
       true
     );
   }
+
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable("treatment");
   }
