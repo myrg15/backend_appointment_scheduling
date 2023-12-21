@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 
 import { Appointments } from "../models/Appointments";
-import { Treatments } from "../models/Treatments";
 
 const getAllAppointments = async (req: Request, res: Response) => {
   try {
@@ -19,8 +18,8 @@ const createAppointment = async (req: Request, res: Response) => {
   try {
     const new_appointment = new Appointments();
     new_appointment.user_Id = id_user;
-    new_appointment.name = name;
     new_appointment.treatment_Id = treatment_Id;
+    new_appointment.name = name;
     new_appointment.date = date;
     new_appointment.time = time;
     new_appointment.status = status;
