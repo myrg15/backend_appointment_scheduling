@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 
-// Models
 import { Treatments } from "../models/Treatments";
 
 const getAllTreatments = async (req: Request, res: Response) => {
@@ -37,5 +36,30 @@ const createTreatment = async (req: Request, res: Response) => {
     res.status(500).json({ message: "internal server error" });
   }
 };
+const updateTreatment = async (req: Request, res: Response) => {
+  const { id } = req.body;
 
-export { getAllTreatments, createTreatment };
+  if (isNaN(Number(id))) {
+    return res.status(400).json({ message: "Invalid ID provided" });
+  }
+  //console.log(req.body);
+  try {
+    const treatment = await Treatments.findOne({
+      where: { id: parseInt(id) },
+    });
+    if (!treatment) {
+      return res.status(404).json({ message: "Treatment not found" });
+    }
+
+    const updatedTreatment = await Treatments.merge(treatment, req.body);
+    const result = await Treatments.save(updatedTreatment);
+
+    res.status(200).json({ status: "success", message: "Treatment updated" });
+  } catch (error) {
+    console.error("Error update treatment:", error);
+    res.status(500).json({ message: "internal server error" });
+  }
+  //console.log(req.body);
+};
+
+export { getAllTreatments, createTreatment, updateTreatment };
