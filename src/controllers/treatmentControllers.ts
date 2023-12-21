@@ -62,4 +62,18 @@ const updateTreatment = async (req: Request, res: Response) => {
   //console.log(req.body);
 };
 
-export { getAllTreatments, createTreatment, updateTreatment };
+const deleteTreatment = async (req: Request, res: Response) => {
+  const { id } = req.body;
+  const treatment = await Treatments.findOne({ where: { id: parseInt(id) } });
+  if (!treatment) {
+    return res.status(404).json({ message: "Treatment not found" });
+  }
+  try {
+    await Treatments.delete({ id: parseInt(id) });
+    res.status(200).json({ status: "success", message: "Treatment deleted" });
+  } catch (error) {
+    console.error("Error delete treatment:", error);
+    res.status(500).json({ message: "internal server error" });
+  }
+};
+export { getAllTreatments, createTreatment, updateTreatment, deleteTreatment };
