@@ -10,9 +10,9 @@ import { Appointments } from "../models/Appointments";
 import { AppDataSource } from "../database";
 
 const userRepository = AppDataSource.getRepository(Users);
-const reviewsRepository = AppDataSource.getRepository(Reviews);
-const treatmentsRepository = AppDataSource.getRepository(Treatments);
-const appointmentRepository = AppDataSource.getRepository(Appointments);
+//const reviewsRepository = AppDataSource.getRepository(Reviews);
+//const treatmentsRepository = AppDataSource.getRepository(Treatments);
+//const appointmentRepository = AppDataSource.getRepository(Appointments);
 
 const register = async (req: Request, res: Response) => {
   const {

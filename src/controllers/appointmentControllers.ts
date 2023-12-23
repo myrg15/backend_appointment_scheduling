@@ -36,5 +36,27 @@ const createAppointment = async (req: Request, res: Response) => {
     res.status(500).json({ message: "internal server error" });
   }
 };
+const updateAppointment = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  try {
+    const appointment = await Appointments.findOne({
+      where: { id: parseInt(id) },
+    });
+    if (!appointment) {
+      return res.status(404).json({ message: "Appointment not found" });
+    }
+
+    console.log(req.body);
+
+    const updatedAppointment = await Appointments.merge(appointment, req.body);
+    await Appointments.save(updatedAppointment);
+
+    res.status(200).json({ status: "success", message: "Appointment updated" });
+  } catch (error) {
+    console.error("Error update appointment:", error);
+    res.status(500).json({ message: "internal server error" });
+  }
+};
 
 export { getAllAppointments, createAppointment };

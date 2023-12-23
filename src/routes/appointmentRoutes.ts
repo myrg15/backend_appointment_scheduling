@@ -7,6 +7,6 @@ import {
 
 const route = express.Router();
 route.get("/allAppointments", getAllAppointments);
-route.post("/Appointment_create", createAppointment);
+route.post("/appointment_create", createAppointment);
 
 export { route as appointmentRoutes };
