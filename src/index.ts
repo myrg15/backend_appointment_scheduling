@@ -5,6 +5,7 @@ import express from "express";
 import { AppDataSource } from "./database";
 import { userRoutes } from "./routes/userRoutes";
 import { treatmentRoutes } from "./routes/treatmentRoutes";
+import { appointmentRoutes } from "./routes/appointmentRoutes";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/users", userRoutes);
+app.use("/appointments", appointmentRoutes);
 app.use("/treatments", treatmentRoutes);
 
 AppDataSource.initialize()

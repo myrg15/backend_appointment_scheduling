@@ -3,9 +3,9 @@ import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
 //Models
 import { Users } from "../models/Users";
-import { Reviews } from "../models/Reviews";
-import { Treatments } from "../models/Treatments";
-import { Appointments } from "../models/Appointments";
+//import { Reviews } from "../models/Reviews";
+//import { Treatments } from "../models/Treatments";
+//import { Appointments } from "../models/Appointments";
 //Database
 import { AppDataSource } from "../database";
 
