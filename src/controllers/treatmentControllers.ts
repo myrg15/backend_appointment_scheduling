@@ -38,12 +38,8 @@ const createTreatment = async (req: Request, res: Response) => {
   }
 };
 const updateTreatment = async (req: Request, res: Response) => {
-  const { id } = req.body;
+  const { id } = req.params;
 
-  if (isNaN(Number(id))) {
-    return res.status(400).json({ message: "Invalid ID provided" });
-  }
-  //console.log(req.body);
   try {
     const treatment = await Treatments.findOne({
       where: { id: parseInt(id) },
@@ -52,8 +48,10 @@ const updateTreatment = async (req: Request, res: Response) => {
       return res.status(404).json({ message: "Treatment not found" });
     }
 
+    console.log(req.body);
+
     const updatedTreatment = await Treatments.merge(treatment, req.body);
-    const result = await Treatments.save(updatedTreatment);
+    await Treatments.save(updatedTreatment);
 
     res.status(200).json({ status: "success", message: "Treatment updated" });
   } catch (error) {
@@ -64,7 +62,8 @@ const updateTreatment = async (req: Request, res: Response) => {
 };
 
 const deleteTreatment = async (req: Request, res: Response) => {
-  const { id } = req.body;
+  const { id } = req.params;
+  console.log(id);
   const treatment = await Treatments.findOne({ where: { id: parseInt(id) } });
   if (!treatment) {
     return res.status(404).json({ message: "Treatment not found" });
