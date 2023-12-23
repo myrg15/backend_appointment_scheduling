@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 
 import { Treatments } from "../models/Treatments";
-import { Users } from "../models/Users";
 
 const getAllTreatments = async (req: Request, res: Response) => {
   try {
