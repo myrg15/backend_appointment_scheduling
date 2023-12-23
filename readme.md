@@ -121,7 +121,7 @@ The developed proposal aims at a backend web application to simulate the managem
 > > }
 > > }
 
-### appointment/create
+### treatment/create
 
 > > POST http://localhost:4001/treatments/create
 > > {
@@ -139,66 +139,65 @@ The developed proposal aims at a backend web application to simulate the managem
 > > }
 > > }
 
-### /appointment/appointment_update
+### treatment/update
 
-> > PUT http://localhost:4000/appointment/appointment_update/5
+> > PUT http://localhost:4001/treatments/treatment_update/24
 > > {
-> > "updateAppointment": {
-> > "id": 5,
-> > "date": "2023-10-10T22:00:00.000Z",
-> > "sessions": "piercing",
-> > "availability": false,
-> > "time": "09:00",
-> > "created_at": "2023-11-10T17:18:27.000Z",
-> > "updated_at": "2023-11-10T17:45:43.000Z",
-> > "customers_id": 2,
-> > "tattooartist_id": 10
+> > name_treatment: 'body saggin',
+> > description: 'Application of hyaluronic acid, DMAE and organic illium to firm and tighten the skin when it begins to lose its tension and flexibility.',
+> > duration_treatment: '6 sessión 1 hour',
+> > img_url: 'https://i0.wp.com/rosanunez.es/wp-content/uploads/2022/10/tratamiento-energeye-rosa-nunez.jpg?resize=900%2C900&ssl=1'
 > > }
+> > {
+> > "status": "success",
+> > "message": "Treatment updated"
 > > }
 
-### appoinment/appointments_get_all
+### treatments/all
 
-> > GET http://localhost:4000/appointment/appointments_get_tattoo
+> > GET http://localhost:4001/treatments/all
 > > {
-> > "id": 3,
-> > "date": "2023-11-04T23:00:00.000Z",
-> > "sessions": "tattoo",
-> > "availability": false,
-> > "time": "09:00",
-> > "created_at": "2023-11-05T15:43:01.000Z",
-> > "updated_at": "2023-11-08T17:45:33.000Z",
-> > "customers_id": 4,
-> > "tattooartist_id": 1
+> > "status": "success",
+> > "treatments": [
+> > >>{
+> > >>"id": 2,
+> > >>"name_treatment": "Facial saggin",
+> > >>"description": "Contribution of DMAE hyaluronic acid and organic silicon reduces wrinkles, reaffirms the oval and raises cheekbones.",
+> > >>"duration_treatment": "5 sessión 1 hour",
+> > >>"img_url": "https://www.montserratquiros.es/wp-content/uploads/2021/03/Tratamiento-dermapen.jpg",
+> > >>"status": "active",
+> > >>"created_at": "2023-12-20T08:28:26.879Z",
+> > >>"updated_at": "2023-12-20T08:28:26.879Z"
+> > >>},
+> > >>{
+> > >>"id": 6,
+> > >>"name_treatment": "eye contour",
+> > >>"description": "application of biomimetic peptides, hyaluronic acid and silicon. To treat bags, dark circles and wrinkles",
+> > >>"duration_treatment": "5 sessión 1 hour",
+> > >>"img_url": "https://i0.wp.com/rosanunez.es/wp-content/uploads/2022/10/tratamiento-energeye-rosa-nunez.jpg?fit=906%2C906&ssl=1",
+> > >>"status": "active",
+> > >>"created_at": "2023-12-21T14:30:29.615Z",
+> > >>"updated_at": "2023-12-21T14:30:29.615Z"
+> > >>},
+> > >>{
+> > >>"id": 7,
+> > >>"name_treatment": "body saggin",
+> > >>"description": "Application of hyaluronic acid, DMAE and organic illium to firm and tighten the skin when it begins to lose its tension and flexibility.",
+> > >>"duration_treatment": "6 sessión 1 hour",
+> > >>"img_url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shutterstock.com%2Fes%2Fsearch%2Fradiofrecuencia&psig=AOvVaw0rlVdHYNwFaZb8C8ifyWf2&ust=1703264605326000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCKiIsb2BoYMDFQAAAAAdAAAAABAE",
+> > >>"status": "active",
+> > >>"created_at": "2023-12-21T17:05:37.460Z",
+> > >>"updated_at": "2023-12-21T17:05:37.460Z"
+> > >>}
+> > >>]
 > > }
 
-> > {
-> > "id": 4,
-> > "date": "2023-10-10T22:00:00.000Z",
-> > "sessions": "piercing",
-> > "availability": false,
-> > "time": "12:00",
-> > "created_at": "2023-11-10T17:17:11.000Z",
-> > "updated_at": "2023-11-10T17:17:11.000Z",
-> > "customers_id": 4,
-> > "tattooartist_id": 10
-> > },
-> > {
-> > "id": 5,
-> > "date": "2023-10-10T22:00:00.000Z",
-> > "sessions": "piercing",
-> > "availability": false,
-> > "time": "12:00",
-> > "created_at": "2023-11-10T17:18:27.000Z",
-> > "updated_at": "2023-11-10T17:18:27.000Z",
-> > "customers_id": 2,
-> > "tattooartist_id": 10
-> > }
+### treatments/treatment_delete/22
 
-### appoinment/appointments_delete/5
-
-> > DELETE http://localhost:4000/appointment/>>appointment_delete/5
+> > DELETE http://localhost:4001/treatments/treatment_delete/22
 > > {
-> > "message": "Appointment delete success"
+> > "status": "success",
+> > "message": "Treatment deleted"
 > > }
 
 ### Grateful
