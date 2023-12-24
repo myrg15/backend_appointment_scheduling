@@ -59,5 +59,28 @@ const updateAppointment = async (req: Request, res: Response) => {
     res.status(500).json({ message: "internal server error" });
   }
 };
+const deleteAppointment = async (req: Request, res: Response) => {
+  const { id } = req.params;
 
-export { getAllAppointments, createAppointment };
+  try {
+    const appointment = await Appointments.findOne({
+      where: { id: parseInt(id) },
+    });
+    if (!appointment) {
+      return res.status(404).json({ message: "Appointment not found" });
+    }
+
+    await Appointments.remove(appointment);
+
+    res.status(200).json({ status: "success", message: "Appointment deleted" });
+  } catch (error) {
+    console.error("Error delete appointment:", error);
+    res.status(500).json({ message: "internal server error" });
+  }
+};
+export {
+  getAllAppointments,
+  createAppointment,
+  updateAppointment,
+  deleteAppointment,
+};

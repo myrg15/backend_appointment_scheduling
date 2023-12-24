@@ -70,6 +70,8 @@ The developed proposal aims at a backend web application to simulate the managem
 
 ### Endpoints
 
+### Users
+
 ### users/register
 
 > > POST http://localhost:4001/users/register
@@ -121,6 +123,8 @@ The developed proposal aims at a backend web application to simulate the managem
 > > }
 > > }
 
+### Treatments
+
 ### treatment/create
 
 > > POST http://localhost:4001/treatments/create
@@ -159,38 +163,39 @@ The developed proposal aims at a backend web application to simulate the managem
 > > {
 > > "status": "success",
 > > "treatments": [
-> > >>{
-> > >>"id": 2,
-> > >>"name_treatment": "Facial saggin",
-> > >>"description": "Contribution of DMAE hyaluronic acid and organic silicon reduces wrinkles, reaffirms the oval and raises cheekbones.",
-> > >>"duration_treatment": "5 sessión 1 hour",
-> > >>"img_url": "https://www.montserratquiros.es/wp-content/uploads/2021/03/Tratamiento-dermapen.jpg",
-> > >>"status": "active",
-> > >>"created_at": "2023-12-20T08:28:26.879Z",
-> > >>"updated_at": "2023-12-20T08:28:26.879Z"
-> > >>},
-> > >>{
-> > >>"id": 6,
-> > >>"name_treatment": "eye contour",
-> > >>"description": "application of biomimetic peptides, hyaluronic acid and silicon. To treat bags, dark circles and wrinkles",
-> > >>"duration_treatment": "5 sessión 1 hour",
-> > >>"img_url": "https://i0.wp.com/rosanunez.es/wp-content/uploads/2022/10/tratamiento-energeye-rosa-nunez.jpg?fit=906%2C906&ssl=1",
-> > >>"status": "active",
-> > >>"created_at": "2023-12-21T14:30:29.615Z",
-> > >>"updated_at": "2023-12-21T14:30:29.615Z"
-> > >>},
-> > >>{
-> > >>"id": 7,
-> > >>"name_treatment": "body saggin",
-> > >>"description": "Application of hyaluronic acid, DMAE and organic illium to firm and tighten the skin when it begins to lose its tension and flexibility.",
-> > >>"duration_treatment": "6 sessión 1 hour",
-> > >>"img_url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shutterstock.com%2Fes%2Fsearch%2Fradiofrecuencia&psig=AOvVaw0rlVdHYNwFaZb8C8ifyWf2&ust=1703264605326000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCKiIsb2BoYMDFQAAAAAdAAAAABAE",
-> > >>"status": "active",
-> > >>"created_at": "2023-12-21T17:05:37.460Z",
-> > >>"updated_at": "2023-12-21T17:05:37.460Z"
-> > >>}
-> > >>]
-> > }
+> >
+> > > > {
+> > > > "id": 2,
+> > > > "name_treatment": "Facial saggin",
+> > > > "description": "Contribution of DMAE hyaluronic acid and organic silicon reduces wrinkles, reaffirms the oval and raises cheekbones.",
+> > > > "duration_treatment": "5 sessión 1 hour",
+> > > > "img_url": "https://www.montserratquiros.es/wp-content/uploads/2021/03/Tratamiento-dermapen.jpg",
+> > > > "status": "active",
+> > > > "created_at": "2023-12-20T08:28:26.879Z",
+> > > > "updated_at": "2023-12-20T08:28:26.879Z"
+> > > > },
+> > > > {
+> > > > "id": 6,
+> > > > "name_treatment": "eye contour",
+> > > > "description": "application of biomimetic peptides, hyaluronic acid and silicon. To treat bags, dark circles and wrinkles",
+> > > > "duration_treatment": "5 sessión 1 hour",
+> > > > "img_url": "https://i0.wp.com/rosanunez.es/wp-content/uploads/2022/10/tratamiento-energeye-rosa-nunez.jpg?fit=906%2C906&ssl=1",
+> > > > "status": "active",
+> > > > "created_at": "2023-12-21T14:30:29.615Z",
+> > > > "updated_at": "2023-12-21T14:30:29.615Z"
+> > > > },
+> > > > {
+> > > > "id": 7,
+> > > > "name_treatment": "body saggin",
+> > > > "description": "Application of hyaluronic acid, DMAE and organic illium to firm and tighten the skin when it begins to lose its tension and flexibility.",
+> > > > "duration_treatment": "6 sessión 1 hour",
+> > > > "img_url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shutterstock.com%2Fes%2Fsearch%2Fradiofrecuencia&psig=AOvVaw0rlVdHYNwFaZb8C8ifyWf2&ust=1703264605326000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCKiIsb2BoYMDFQAAAAAdAAAAABAE",
+> > > > "status": "active",
+> > > > "created_at": "2023-12-21T17:05:37.460Z",
+> > > > "updated_at": "2023-12-21T17:05:37.460Z"
+> > > > }
+> > > > ]
+> > > > }
 
 ### treatments/treatment_delete/22
 
@@ -198,6 +203,97 @@ The developed proposal aims at a backend web application to simulate the managem
 > > {
 > > "status": "success",
 > > "message": "Treatment deleted"
+> > }
+
+### Appointments
+
+### appointment_create
+
+> > POST http://localhost:4001/appointments/appointment_create
+> > {
+> > user_Id: 1,
+> > treatment_Id: 24,
+> > name: 'body saggin',
+> > date: '2023-12-27',
+> > time: '09:00',
+> > status: 'active'
+> > }
+> > {
+> > "status": "success",
+> > "message": "Appointment create success",
+> > "appointment": {
+> > "user_Id": 1,
+> > "treatment_Id": 24,
+> > "name": "body saggin",
+> > "date": "2023-12-27",
+> > "time": "09:00",
+> > "status": "active",
+> > "id": 2,
+> > "created_at": "2023-12-24T01:24:35.666Z",
+> > "updated_at": "2023-12-24T01:24:35.666Z"
+> > }
+> > }
+
+### appointments/allAppointment
+
+> > POST http://localhost:4001/appointments/allAppointments
+
+> > {
+> > "name": "body saggin",
+> > "status": "active",
+> > "date": "2023-12-27",
+> > "time": "09:00"
+> > }
+
+> > {
+> > "status": "success",
+> > "appointments": [
+> > {
+> > "id": 1,
+> > "user_Id": 34,
+> > "treatment_Id": 2,
+> > "name": "facial saggin",
+> > "status": "active",
+> > "date": "2023-12-22T23:00:00.000Z",
+> > "time": "18:00",
+> > "created_at": "2023-12-23T13:01:20.737Z",
+> > "updated_at": "2023-12-23T13:01:20.737Z"
+> > },
+
+> > {
+> > "id": 2,
+> > "user_Id": 1,
+> > "treatment_Id": 24,
+> > "name": "body saggin",
+> > "status": "active",
+> > "date": "2023-12-26T23:00:00.000Z",
+> > "time": "09:00",
+> > "created_at": "2023-12-24T01:24:35.666Z",
+> > "updated_at": "2023-12-24T01:24:35.666Z"
+> > },
+> > {
+> > "id": 3,
+> > "user_Id": 1,
+> > "treatment_Id": 25,
+> > "name": "scalp",
+> > "status": "active",
+> > "date": "2023-12-27T23:00:00.000Z",
+> > "time": "10:00",
+> > "created_at": "2023-12-24T01:58:43.368Z",
+> > "updated_at": "2023-12-24T01:58:43.368Z"
+> > },
+> > {
+> > "id": 4,
+> > "user_Id": 32,
+> > "treatment_Id": 26,
+> > "name": "spots and pigmentation",
+> > "status": "active",
+> > "date": "2023-12-28T23:00:00.000Z",
+> > "time": "16:00",
+> > "created_at": "2023-12-24T02:01:09.004Z",
+> > "updated_at": "2023-12-24T02:01:09.004Z"
+> > }
+> > ]
 > > }
 
 ### Grateful
