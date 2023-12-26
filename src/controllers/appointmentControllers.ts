@@ -39,7 +39,7 @@ const createAppointment = async (req: Request, res: Response) => {
 };
 const updateAppointment = async (req: Request, res: Response) => {
   const { id } = req.params;
-
+  console.log(req.body);
   try {
     const appointment = await Appointments.findOne({
       where: { id: parseInt(id) },
