@@ -8,7 +8,6 @@ import {
   ManyToMany,
   JoinTable,
   OneToMany,
-  ManyToOne,
 } from "typeorm";
 import { Appointments } from "../models/Appointments";
 import { Reviews } from "./Reviews";
@@ -18,8 +17,8 @@ export class Treatments extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  /*@Column()
-  review_Id!: number;*/
+  @Column()
+  review_Id!: number;
 
   /* @Column()
   appointment_Id!: number;*/
@@ -59,12 +58,6 @@ export class Treatments extends BaseEntity {
   })
   appointments!: Appointments[];
 
-  /*@OneToMany(() => Reviews, (review) => review.treatment)
+  @OneToMany(() => Reviews, (review) => review.treatment)
   reviews!: Reviews[];
-
-  @ManyToMany(() => Appointments)
-  @JoinTable({
-    name: "treatment",
-  })
-  appointment!: Appointments[];*/
 }

@@ -4,9 +4,6 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   ManyToOne,
-  JoinTable,
-  ManyToMany,
-  JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -39,10 +36,9 @@ export class Reviews extends BaseEntity {
   @UpdateDateColumn()
   updated_at!: Date;
 
-  /*@ManyToOne(() => Users, (user) => user.reviews) //revisar no me trae el .review
-  user!: Users;*/
+  @ManyToOne(() => Users, (user) => user.reviews) //revisar no me trae el .review
+  user!: Users;
 
-  /*@ManyToOne(() => Treatments, (treatment) => treatment.reviews)
-  @JoinColumn({ name: "treatment_Id" }) // Esto conecta la columna 'treatment_Id' con la relación
-  treatment!: Treatments;*/
+  @ManyToOne(() => Treatments, (treatment) => treatment.reviews)
+  treatment!: Treatments;
 }
