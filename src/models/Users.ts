@@ -8,6 +8,7 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { Reviews } from "./Reviews";
+import { Appointments } from "./Appointments";
 @Entity("user")
 export class Users extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -42,6 +43,9 @@ export class Users extends BaseEntity {
 
   @UpdateDateColumn()
   updated_at!: Date;
+
+  @OneToMany(() => Appointments, (appointment) => appointment.user)
+  appointments!: Appointments[];
 
   /*@OneToMany(() => Reviews, (review) => review.user)
   reviews!: Reviews[];*/

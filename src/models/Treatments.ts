@@ -45,6 +45,20 @@ export class Treatments extends BaseEntity {
   @UpdateDateColumn()
   updated_at!: Date;
 
+  @ManyToMany(() => Appointments, (appointment) => appointment.treatments)
+  @JoinTable({
+    name: "appointment_treatments", // Nombre de la tabla de unión
+    joinColumn: {
+      name: "treatment_id",
+      referencedColumnName: "id",
+    },
+    inverseJoinColumn: {
+      name: "appointment_id",
+      referencedColumnName: "id",
+    },
+  })
+  appointments!: Appointments[];
+
   /*@OneToMany(() => Reviews, (review) => review.treatment)
   reviews!: Reviews[];
 

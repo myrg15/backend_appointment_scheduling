@@ -8,23 +8,16 @@ import {
   UpdateDateColumn,
   ManyToMany,
   JoinTable,
+  ManyToOne,
 } from "typeorm";
 
 import { Users } from "../models/Users";
+import { Treatments } from "./Treatments";
 
 @Entity("appointment")
 export class Appointments extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
-
-  @Column()
-  user_Id!: number;
-
-  @Column()
-  treatment_Id!: number;
-
-  @Column()
-  name!: string;
 
   @Column()
   status!: string;
@@ -40,4 +33,13 @@ export class Appointments extends BaseEntity {
 
   @UpdateDateColumn()
   updated_at!: Date;
+
+  @ManyToOne(() => Users, (user) => user.appointments)
+  user!: Users;
+
+  @ManyToMany(
+    () => Treatments,
+    (treatment: Treatments) => treatment.appointments
+  )
+  treatments!: Treatments[];
 }
