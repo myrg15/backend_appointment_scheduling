@@ -296,6 +296,21 @@ The developed proposal aims at a backend web application to simulate the managem
 > > ]
 > > }
 
+### appointments/appointment_update/:id
+
+> > PUT http://localhost:4001/appointments/appointment_update/2
+> > {
+> > "name": "facial saggin",
+> > "status": "active",
+> > "date":"2023-12-27",
+> > "time": "18:00"
+> > }
+
+> > {
+> > "status": "success",
+> > "message": "Appointment updated"
+> > }
+
 ### Grateful
 
 First of all to my colleagues who have contributed their opinions at opportune moments to make all the information seen in the classroom more fluid, to the existence of applications such as stack overflow, tutorials on the subject.  
