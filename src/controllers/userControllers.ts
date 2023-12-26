@@ -66,9 +66,7 @@ const login = async (req: Request, res: Response) => {
     if (!user || !(await bycrypt.compare(password, user.password))) {
       return res.status(403).json({ message: "credentials invalids" });
     }
-
     user.password = "";
-
     const token = jwt.sign(
       {
         name: user.id,
@@ -98,19 +96,14 @@ const login = async (req: Request, res: Response) => {
 const profile = async (req: Request, res: Response) => {
   const { email } = req.token;
   try {
-    const user = await userRepository.findOne({ where: { email } });
-
+    const user = await Users.findOne({ where: { email } });
     if (user) {
+      Object.assign(user, req.body);
+      const updateProfile = await Users.save(user);
       return res.json({
         success: true,
         message: "profile users retrieved",
-        data: user,
-      });
-      console.log(user);
-    } else {
-      return res.status(404).json({
-        success: false,
-        message: "profile users not found",
+        data: updateProfile,
       });
     }
   } catch (error) {
@@ -122,4 +115,26 @@ const profile = async (req: Request, res: Response) => {
   }
 };
 
-export { login, register, profile };
+const updateProfile = async (req: Request, res: Response) => {
+  const { email } = req.token;
+  try {
+    const user = await Users.findOne({ where: { email } });
+
+    if (user) {
+      Object.assign(user, req.body);
+      const updateProfile = await Users.save(user);
+      return res.json({
+        success: true,
+        message: "profile users retrieved",
+        data: updateProfile,
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "profile users not found",
+    });
+  }
+};
+
+export { login, register, profile, updateProfile };

@@ -123,6 +123,32 @@ The developed proposal aims at a backend web application to simulate the managem
 > > }
 > > }
 
+### users/update_profile
+
+> > PUT http://localhost:4001/users/update_profile
+
+> > {
+> > "email": "meri.meri@gmail.com"
+> > }
+
+> > {
+> > "success": true,
+> > "message": "profile users retrieved",
+> > "data": {
+> > "id": 1,
+> > "name": "meri",
+> > "last_name": "rodriguez",
+> > "email": "meri.meri@gmail.com",
+> > "password": "$2b$10$RtDxGqS9uAXfx0kq5.dAiuXVLCQv90qL50llIuxazhxw04BFc1g.6",
+> > "phone_number": "123456789",
+> > "address": "valencia",
+> > "role": "admin",
+> > "status": "active",
+> > "created_at": "2023-12-19T19:17:08.574Z",
+> > "updated_at": "2023-12-19T19:17:08.574Z"
+> > }
+> > }
+
 ### Treatments
 
 ### treatment/create
