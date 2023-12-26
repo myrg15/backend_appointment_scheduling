@@ -7,6 +7,8 @@ import {
   JoinTable,
   ManyToMany,
   JoinColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from "typeorm";
 import { Users } from "../models/Users";
 import { Treatments } from "../models/Treatments";
@@ -31,10 +33,10 @@ export class Reviews extends BaseEntity {
   @Column()
   status!: string;
 
-  @Column()
+  @CreateDateColumn()
   created_at!: Date;
 
-  @Column()
+  @UpdateDateColumn()
   updated_at!: Date;
 
   /*@ManyToOne(() => Users, (user) => user.reviews) //revisar no me trae el .review

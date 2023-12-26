@@ -350,6 +350,35 @@ The developed proposal aims at a backend web application to simulate the managem
 > > "message": "Appointment deleted"
 > > }
 
+### Reviews
+
+### review/create
+
+> > POST http://localhost:4001/reviews/create
+
+> > {
+> > "user_Id": 1,
+> > "treatment_Id": 2,
+> > "rating": "10",
+> > "feedback": "With all the sessions completed, you can see the change brought by the >> saggin facial treatment, which is highly recommended",
+> > "status": "active"
+> > }
+
+> > {
+> > "status": "success",
+> > "message": "Review create success",
+> > "review": {
+> > "user_Id": 1,
+> > "treatment_Id": 2,
+> > "rating": "10",
+> > "feedback": "With all the sessions completed, you can see the change brought by >> the saggin facial treatment, which is highly recommended",
+> > "status": "active",
+> > "id": 1,
+> > "created_at": "2023-12-26T15:44:10.834Z",
+> > "updated_at": "2023-12-26T15:44:10.834Z"
+> > }
+> > }
+
 ### Grateful
 
 First of all to my colleagues who have contributed their opinions at opportune moments to make all the information seen in the classroom more fluid, to the existence of applications such as stack overflow, tutorials on the subject.  
