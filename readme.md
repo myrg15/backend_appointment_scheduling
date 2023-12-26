@@ -311,6 +311,19 @@ The developed proposal aims at a backend web application to simulate the managem
 > > "message": "Appointment updated"
 > > }
 
+### appointments/appointment_delete/2
+
+> > DELETE http://localhost:4001/appointments/appointment_update/2
+
+> > {
+> > "id":"2"
+> > }
+
+> > {
+> > "status": "success",
+> > "message": "Appointment deleted"
+> > }
+
 ### Grateful
 
 First of all to my colleagues who have contributed their opinions at opportune moments to make all the information seen in the classroom more fluid, to the existence of applications such as stack overflow, tutorials on the subject.  
