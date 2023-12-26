@@ -15,8 +15,9 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/users", userRoutes);
-app.use("/appointments", appointmentRoutes);
+//app.use("/reviews", reviewRoutes);
 app.use("/treatments", treatmentRoutes);
+app.use("/appointments", appointmentRoutes);
 
 AppDataSource.initialize()
   .then(() => {
