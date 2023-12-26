@@ -18,28 +18,46 @@ The developed proposal aims at a backend web application to simulate the managem
 
 ### Representation users relationship
 
+> > @OneToMany(() => Appointments, (appointment) => appointment.user)
+> > appointments!: Appointments[];
+
 > > @OneToMany(() => Reviews, (reviews) => review.user)
 > > reviews!: Reviews[];
 
 ### Representation appointment relationship
 
-> > @ManyToMany(() => Users)
-> > @JoinTable({
-> > name: "appointment"
-> > })
-> > user!: Users[];
+> > @ManyToOne(() => Users, (user) => user.appointments)
+> > user!: Users;
+
+> > @ManyToMany(() => Treatments,(treatment: Treatments) => treatment.appointments)
+> > treatments!: Treatments[];
 
 ### Representation treatment relationship
 
-> > @ManyToOne(() => Appointment, (appointment)=>appointment.treatment)
-> > @JoinColumn({name: "appointment_id"})
-> > appointment!: Appointment [];
+> > @ManyToMany(() => Appointments, (appointment) => appointment.treatments)
+> > @JoinTable({
+> > name: "appointment_treatments", // Nombre de la tabla de unión
+> > joinColumn: {
+> > name: "treatment_id",
+> > referencedColumnName: "id",
+> > },
+> > inverseJoinColumn: {
+> > name: "appointment_id",
+> > referencedColumnName: "id",
+> > },
+> > })
+> > appointments!: Appointments[];
+
+> > @OneToMany(() => Reviews, (review) => review.treatment)
+> > reviews!: Reviews[];
 
 ### Representation Review relationship
 
-> > @ManyToOne(() => Treatment, (treatment)=>treatmet.review)
-> > @JoinColumn({name: "treatment_id"})
-> > treatment!: Treatment [];
+> > @ManyToOne(() => Users, (user) => user.reviews) //revisar no me trae el .review
+> > user!: Users;
+
+> > @ManyToOne(() => Treatments, (treatment) => treatment.reviews)
+> > treatment!: Treatments;
 
 ### Reverse Engineer
 
