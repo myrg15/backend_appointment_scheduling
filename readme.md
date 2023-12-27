@@ -88,6 +88,10 @@ The developed proposal aims at a backend web application to simulate the managem
 
 ### Endpoints
 
+### Enlace Postman
+
+[Colletions](https://documenter.getpostman.com/view/30593327/2s9YkuXcfX)
+
 ### Users
 
 ### users/register

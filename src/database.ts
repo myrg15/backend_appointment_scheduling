@@ -24,6 +24,7 @@ export const AppDataSource = new DataSource({
   //npx typeorm migration:create ./src/migration/Treatments
   //npx typeorm-ts-node-commonjs migration:run -d ./src/database.ts
   migrations: [
+    Appointments1703008542263,
     /*Users1703008272193,
     Appointments1703008542263,
     Treatments1703011213211,

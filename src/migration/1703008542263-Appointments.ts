@@ -17,11 +17,10 @@ export class Appointments1703008542263 implements MigrationInterface {
             name: "user_Id",
             type: "int",
           },
-          {
-            name: "name",
-            type: "varchar",
-            length: "100",
-          },
+          /*{
+            name: "treatment_Id",
+            type: "int",
+          },*/
           {
             name: "status",
             type: "varchar",
@@ -52,6 +51,12 @@ export class Appointments1703008542263 implements MigrationInterface {
           {
             columnNames: ["user_Id"],
             referencedTableName: "user",
+            referencedColumnNames: ["id"],
+            onDelete: "CASCADE",
+          },
+          {
+            columnNames: ["treatment_Id"],
+            referencedTableName: "treatment",
             referencedColumnNames: ["id"],
             onDelete: "CASCADE",
           },
