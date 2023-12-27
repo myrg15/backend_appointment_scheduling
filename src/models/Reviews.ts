@@ -18,8 +18,8 @@ export class Reviews extends BaseEntity {
   @Column()
   user_Id!: number;
 
-  @Column()
-  treatment_Id!: number;
+  /*@Column()
+  treatment_Id!: number;*/
 
   @Column()
   rating!: string;
@@ -36,9 +36,9 @@ export class Reviews extends BaseEntity {
   @UpdateDateColumn()
   updated_at!: Date;
 
-  @ManyToOne(() => Users, (user) => user.reviews) //revisar no me trae el .review
-  user!: Users;
+  //@ManyToOne(() => Users, (user) => user) //revisar no me trae el .review
+  //user!: Users;
 
-  @ManyToOne(() => Treatments, (treatment) => treatment.reviews)
-  treatment!: Treatments;
+  //@ManyToOne(() => Treatments, (treatment) => treatment)
+  //treatment!: Treatments;
 }
