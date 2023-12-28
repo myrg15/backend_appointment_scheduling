@@ -18,11 +18,17 @@ const getAllAppointments = async (req: Request, res: Response) => {
 };
 
 const createAppointment = async (req: Request, res: Response) => {
-  const { user_Id, treatment_Ids, name, date, time, status } = req.body;
+  const { treatment_Ids, date, time, status } = req.body;
+
+  const { token } = req;
 
   try {
+    if (!token) {
+      return res.status(404).json({ message: "Token not found" });
+    }
+
     // Obtener el usuario
-    const user = await Users.findOneBy({ id: user_Id });
+    const user = await Users.findOneBy({ email: token?.email });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -41,7 +47,7 @@ const createAppointment = async (req: Request, res: Response) => {
     if (Array.isArray(treatment_Ids) && treatment_Ids.length) {
       const treatments = await Treatments.findBy({ id: In(treatment_Ids) });
       appointment.treatments = treatments;
-      await Appointments.save(appointment); // Actualizar la cita con los tratamientos
+      await Appointments.save(appointment); // Actualizar
     }
 
     return res.status(200).json({
@@ -70,6 +76,7 @@ const updateAppointment = async (req: Request, res: Response) => {
 
     const updatedAppointment = await Appointments.merge(appointment, req.body);
     await Appointments.save(updatedAppointment);
+    console.log(updatedAppointment);
 
     res.status(200).json({ status: "success", message: "Appointment updated" });
   } catch (error) {
@@ -82,14 +89,18 @@ const deleteAppointment = async (req: Request, res: Response) => {
   const { id } = req.params;
 
   try {
-    const appointment = await Appointments.findOne({
-      where: { id: parseInt(id) },
-    });
-    if (!appointment) {
+    const appointmentId = parseInt(id);
+
+    //const appointment = await Appointments.findOne({
+    //where: { id: parseInt(id) },
+    //});
+    if (isNaN(appointmentId)) {
       return res.status(404).json({ message: "Appointment not found" });
     }
 
-    await Appointments.remove(appointment);
+    const appointment = await Appointments.findOne({
+      where: { id: appointmentId },
+    });
 
     res.status(200).json({ status: "success", message: "Appointment deleted" });
   } catch (error) {

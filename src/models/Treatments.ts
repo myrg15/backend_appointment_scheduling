@@ -18,12 +18,6 @@ export class Treatments extends BaseEntity {
   id!: number;
 
   @Column()
-  review_Id!: number;
-
-  @Column()
-  appointment_Id!: number;
-
-  @Column()
   name_treatment!: string;
 
   @Column()
@@ -58,6 +52,6 @@ export class Treatments extends BaseEntity {
   })
   appointments!: Appointments[];
 
-  /*@OneToMany(() => Reviews, (review) => review.treatment)
-  reviews!: Reviews[];*/
+  @OneToMany(() => Reviews, (review) => review.treatment)
+  reviews!: Reviews[];
 }

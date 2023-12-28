@@ -18,9 +18,6 @@ export class Appointments extends BaseEntity {
   id!: number;
 
   @Column()
-  user_Id!: number;
-
-  @Column()
   status!: string;
 
   @Column()

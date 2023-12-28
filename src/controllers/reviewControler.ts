@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { Reviews } from "../models/Reviews";
-//import {Treatments} from "../models/Treatments";
-//import { Users } from "../models/Users";
+import { Users } from "../models/Users";
+import { Treatments } from "../models/Treatments";
 
 const getAllReviews = async (req: Request, res: Response) => {
   try {
@@ -13,14 +13,14 @@ const getAllReviews = async (req: Request, res: Response) => {
   }
 };
 
-/*const createReview = async (req: Request, res: Response) => {
+const createReview = async (req: Request, res: Response) => {
   const { user_Id, treatment_Id, rating, feedback, status } = req.body;
 
   try {
     const user = await Users.findOneBy({ id: user_Id });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
-    } 
+    }
 
     const new_review = new Reviews();
     new_review.user = user;
@@ -29,7 +29,7 @@ const getAllReviews = async (req: Request, res: Response) => {
     new_review.status = status;
 
     if (treatment_Id) {
-      const treatment = await Treatments.findOne({ id: treatment_Id });
+      const treatment = await Treatments.findOneBy({ id: treatment_Id });
       if (treatment) {
         new_review.treatment = treatment;
       } else {
@@ -38,7 +38,7 @@ const getAllReviews = async (req: Request, res: Response) => {
     }
 
     const review = await Reviews.save(new_review);
-    
+
     res.status(200).json({
       status: "success",
       message: "Review create success",
@@ -47,7 +47,8 @@ const getAllReviews = async (req: Request, res: Response) => {
   } catch (error) {
     console.error("Error create review:", error);
     res.status(500).json({ message: "internal server error" });
-  }*/
+  }
+};
 
 const updateReview = async (req: Request, res: Response) => {
   const { id } = req.params;
@@ -90,4 +91,4 @@ const deleteReview = async (req: Request, res: Response) => {
   }
 };
 
-export { getAllReviews, updateReview, deleteReview };
+export { getAllReviews, createReview, updateReview, deleteReview };

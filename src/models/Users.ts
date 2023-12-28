@@ -47,6 +47,6 @@ export class Users extends BaseEntity {
   @OneToMany(() => Appointments, (appointment) => appointment.user)
   appointments!: Appointments[];
 
-  //@OneToMany(() => Reviews, (review) => review.user)
-  //reviews!: Reviews[];
+  @OneToMany(() => Reviews, (review) => review.user)
+  reviews!: Reviews[];
 }
