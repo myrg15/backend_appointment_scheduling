@@ -1,9 +1,8 @@
-import { Request, Response } from "express";
-
-import { Appointments } from "../models/Appointments";
-import { Users } from "../models/Users";
-import { Treatments } from "../models/Treatments";
 import { In } from "typeorm";
+import { Users } from "../models/Users";
+import { Request, Response } from "express";
+import { Treatments } from "../models/Treatments";
+import { Appointments } from "../models/Appointments";
 
 const getAllAppointments = async (req: Request, res: Response) => {
   try {
@@ -19,37 +18,30 @@ const getAllAppointments = async (req: Request, res: Response) => {
 
 const createAppointment = async (req: Request, res: Response) => {
   const { treatment_Ids, date, time, status } = req.body;
-
   const { token } = req;
-
   try {
     if (!token) {
       return res.status(404).json({ message: "Token not found" });
     }
-
-    // Obtener el usuario
+    //obtengo el usuario
     const user = await Users.findOneBy({ email: token?.email });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-
-    // Crear la cita sin asignar tratamientos aún
+    // Se crea la cita sin asignar tratamientos aún
     const new_appointment = new Appointments();
     new_appointment.user = user;
     new_appointment.date = date;
     new_appointment.time = time;
     new_appointment.status = status;
-
-    // Guardar la cita para obtener un ID
+    // Guardo la cita para obtener un ID
     const appointment = await Appointments.save(new_appointment);
-
-    // Ahora, si treatment_Ids es un array, asociar los tratamientos con la cita
+    // Ahora, si treatment_Ids es un array, se asocia los tratamientos con la cita
     if (Array.isArray(treatment_Ids) && treatment_Ids.length) {
       const treatments = await Treatments.findBy({ id: In(treatment_Ids) });
       appointment.treatments = treatments;
       await Appointments.save(appointment); // Actualizar
     }
-
     return res.status(200).json({
       status: "success",
       message: "Appointment created successfully",
@@ -71,9 +63,7 @@ const updateAppointment = async (req: Request, res: Response) => {
     if (!appointment) {
       return res.status(404).json({ message: "Appointment not found" });
     }
-
     console.log(req.body);
-
     const updatedAppointment = await Appointments.merge(appointment, req.body);
     await Appointments.save(updatedAppointment);
     console.log(updatedAppointment);
@@ -87,21 +77,14 @@ const updateAppointment = async (req: Request, res: Response) => {
 
 const deleteAppointment = async (req: Request, res: Response) => {
   const { id } = req.params;
-
   try {
     const appointmentId = parseInt(id);
-
-    //const appointment = await Appointments.findOne({
-    //where: { id: parseInt(id) },
-    //});
     if (isNaN(appointmentId)) {
       return res.status(404).json({ message: "Appointment not found" });
     }
-
     const appointment = await Appointments.findOne({
       where: { id: appointmentId },
     });
-
     res.status(200).json({ status: "success", message: "Appointment deleted" });
   } catch (error) {
     console.error("Error delete appointment:", error);

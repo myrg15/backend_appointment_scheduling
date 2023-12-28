@@ -1,6 +1,6 @@
+import { Users } from "../models/Users";
 import { Request, Response } from "express";
 import { Reviews } from "../models/Reviews";
-import { Users } from "../models/Users";
 import { Treatments } from "../models/Treatments";
 
 const getAllReviews = async (req: Request, res: Response) => {
@@ -15,13 +15,11 @@ const getAllReviews = async (req: Request, res: Response) => {
 
 const createReview = async (req: Request, res: Response) => {
   const { user_Id, treatment_Id, rating, feedback, status } = req.body;
-
   try {
     const user = await Users.findOneBy({ id: user_Id });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-
     const new_review = new Reviews();
     new_review.user = user;
     new_review.rating = rating;
@@ -36,9 +34,7 @@ const createReview = async (req: Request, res: Response) => {
         return res.status(404).json({ message: "Treatment not found" });
       }
     }
-
     const review = await Reviews.save(new_review);
-
     res.status(200).json({
       status: "success",
       message: "Review create success",
@@ -52,7 +48,6 @@ const createReview = async (req: Request, res: Response) => {
 
 const updateReview = async (req: Request, res: Response) => {
   const { id } = req.params;
-
   try {
     const review = await Reviews.findOne({
       where: { id: parseInt(id) },
@@ -60,12 +55,9 @@ const updateReview = async (req: Request, res: Response) => {
     if (!review) {
       return res.status(404).json({ message: "Review not found" });
     }
-
     console.log(req.body);
-
     const updatedReview = await Reviews.merge(review, req.body);
     await Reviews.save(updatedReview);
-
     res.status(200).json({ status: "success", message: "Review updated" });
   } catch (error) {
     console.error("Error update review:", error);

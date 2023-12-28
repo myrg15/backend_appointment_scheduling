@@ -1,18 +1,10 @@
 import bycrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { Request, Response } from "express";
-//Models
 import { Users } from "../models/Users";
-//import { Reviews } from "../models/Reviews";
-//import { Treatments } from "../models/Treatments";
-//import { Appointments } from "../models/Appointments";
-//Database
+import { Request, Response } from "express";
 import { AppDataSource } from "../database";
 
 const userRepository = AppDataSource.getRepository(Users);
-//const reviewsRepository = AppDataSource.getRepository(Reviews);
-//const treatmentsRepository = AppDataSource.getRepository(Treatments);
-//const appointmentRepository = AppDataSource.getRepository(Appointments);
 
 const register = async (req: Request, res: Response) => {
   const {

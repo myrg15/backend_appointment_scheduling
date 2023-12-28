@@ -1,7 +1,5 @@
 import { Router } from "express";
 import { auth } from "../middlewares/auth";
-
-// Controllers
 import {
   login,
   register,

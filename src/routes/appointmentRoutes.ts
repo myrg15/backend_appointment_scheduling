@@ -1,5 +1,4 @@
 import express from "express";
-
 import {
   getAllAppointments,
   createAppointment,
@@ -13,4 +12,5 @@ route.get("/allAppointments", getAllAppointments);
 route.post("/appointment_create", auth, createAppointment);
 route.put("/appointment_update/:id", updateAppointment);
 route.delete("/appointment_delete/:id", deleteAppointment);
+
 export { route as appointmentRoutes };

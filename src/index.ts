@@ -1,6 +1,5 @@
 import cors from "cors";
 import express from "express";
-
 // Routes
 import { AppDataSource } from "./database";
 import { userRoutes } from "./routes/userRoutes";
