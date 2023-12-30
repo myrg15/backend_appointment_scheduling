@@ -1,20 +1,51 @@
 <h1 align="center"> Appointments booking System</h1>​
 ​
-<h2 align="center">Backend application for centre esthetics</h2>
+<h2 align="center">Backend for centre esthetics facial & body care</h2> <img scr="3.png" alt="log">
 
 ## Table of contents
 
 - Title project
 - Project description
 - Reverse Engineer
+- File sql database
 - How to use the application
 - Technologies Used
-- List endpoints
+- Representation relationship
+- Endpoints
+- Link postman
 - Licence and copyright
 
 ### Project descriptión
 
-The developed proposal aims at a backend web application to simulate the management of appointments in a beauty center, in which I have mainly used the tools node + express, mysql workbench, postman to generate different endpoints for the users who will enter the application. In this case we focus on the design of entity models to obtain a **users** table composed of the following properties: id, username, last name, email, password, phone number, address, role, status, where it has a one-to-many relationship with reviews.**appointments** with the properties id, user_Id, treatment_Id, name, status, date, time. **Treatments** with the properties id, review_Id, appointment_Id, treatment_name, description, treatment_duration, image_url, status. Relating one to many with reviews, many to many with quotes. **Review** with the properties id, user_Id, treatment_Id, ratings, feedback, status. In a many-to-one relationship with users, many-to-one with treatments
+The developed proposal aims at a backend web application to simulate the management of appointments in a beauty center, in which I have mainly used the tools node + express, mysql workbench, postman to generate different endpoints for the users who will enter the application. In this case we focus on the design of entity models to obtain a **users** table composed of the following properties: id, username, last name, email, password, phone number, address, role, status, where it has a one-to-many relationship with reviews.**appointments** with the properties id, user_Id, treatment_Id, name, status, date, time. **Treatments** with the properties id, review_Id, appointment_Id, treatment_name, description, treatment_duration, image_url, status. Relating one to many with reviews, many to many with quotes. **Review** with the properties id, user_Id, treatment_Id, ratings, feedback, status. In a many-to-one relationship with users, many-to-one with treatments.
+
+### Reverse Engineer
+
+![Diagram BBDD](./src/img/Entitys.JPG)
+
+### File Sql Database
+
+![Sql](./src/img/Sql/Dump20231230.sql)
+
+### how to use the application
+
+- **install vscode extension Thunderclient or postman**
+- **Install node**
+- **install express**
+- **install typeORM**
+- **install dotenv**
+- **install mysql workbench**
+- run the command **npm run dev** in the terminal
+
+### Technologies used
+
+<p align = "center" display= "flex">
+  <tr >
+    <td valign="top"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/2560px-Node.js_logo.svg.png" width="60"></td>
+    <td valign="top"><img src="https://cdn.worldvectorlogo.com/logos/postman.svg" width="60"></td>
+    <td valign="top"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Git-logo.svg/512px-Git-logo.svg.png" width="80"></td>
+    <td valign="top"><img src=https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/2048px-Typescript_logo_2020.svg.png width="55"></td>
+     <td valign="top"><img src="https://avatars.githubusercontent.com/u/20165699?v=4" width="60"></td>
 
 ### Representation users relationship
 
@@ -57,42 +88,11 @@ The developed proposal aims at a backend web application to simulate the managem
 > > user!: Users;
 
 > > @ManyToOne(() => Treatments, (treatment) => treatment.reviews)
-> > treatment!: Treatments;
-
-### Reverse Engineer
-
-![Diagram BBDD](./src/img/Entitys.JPG)
-
-### File Sql Database
-
-![Sql](./src/img/Sql/Dump20231230.sql)
-
-### how to use the application
-
-- **install vscode extension Thunderclient or postman**
-- **Install node**
-- **install express**
-- **install typeORM**
-- **install dotenv**
-- **install mysql workbench**
-- run the command **npm run dev** in the terminal
-  ​
-
-### Technologies Used
-
-​
-
-<p align = "center" display= "flex">
-  <tr >
-    <td valign="top"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/2560px-Node.js_logo.svg.png" width="60"></td>
-    <td valign="top"><img src="https://cdn.worldvectorlogo.com/logos/postman.svg" width="60"></td>
-    <td valign="top"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Git-logo.svg/512px-Git-logo.svg.png" width="80"></td>
-    <td valign="top"><img src=https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/2048px-Typescript_logo_2020.svg.png width="55"></td>
-     <td valign="top"><img src="https://avatars.githubusercontent.com/u/20165699?v=4" width="60"></td>
+> > treatment!: Treatments; ​
 
 ### Endpoints
 
-### Enlace Postman
+### Link Postman
 
 [Colletions](https://documenter.getpostman.com/view/30593327/2s9YkuXcfX)
 
@@ -405,11 +405,6 @@ The developed proposal aims at a backend web application to simulate the managem
 > > }
 > > }
 
-### Grateful
-
-First of all to my colleagues who have contributed their opinions at opportune moments to make all the information seen in the classroom more fluid, to the existence of applications such as stack overflow, tutorials on the subject.  
-​
-
 ### Licence and copyright
 
-📝 The copyright belongs to me Meriyen Rodriguez, in this web application proposed by the Geekshubs academy as the first backend version to later give continuity to the fronend version.
+📝 The copyright belongs to Meriyen Rodriguez, proposal for a backend application for appointment management, with the purpose of completing the final delivery project at Geekshubs academy.
