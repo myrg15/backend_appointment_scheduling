@@ -63,6 +63,10 @@ The developed proposal aims at a backend web application to simulate the managem
 
 ![Diagram BBDD](./src/img/Entitys.JPG)
 
+### File Sql Database
+
+![Sql](./src/img/Sql/Dump20231230.sql)
+
 ### how to use the application
 
 - **install vscode extension Thunderclient or postman**
