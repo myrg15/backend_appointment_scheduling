@@ -25,7 +25,7 @@ The developed proposal aims at a backend web application to simulate the managem
 
 ### File Sql Database
 
-![Sql](./src/img/Sql/Dump20231230.sql)
+![Link sql](./src/img/Sql/Dump20231230.sql)
 
 ### how to use the application
 
